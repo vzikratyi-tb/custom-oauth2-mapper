@@ -31,7 +31,7 @@
     <inceptionYear>2016</inceptionYear>
 
     <properties>
-        <spring-boot.version>2.0.5.RELEASE</spring-boot.version>
+        <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -43,12 +43,33 @@
         <pkg.unixLogFolder>/var/log/${pkg.name}</pkg.unixLogFolder>
         <pkg.win.dist>${project.build.directory}/windows</pkg.win.dist>
         <winsw.version>1.9</winsw.version>
-        <oauth2-mapper.docker.name>oauth2-mapper</oauth2-mapper.docker.name>
         <dockerfile.skip>true</dockerfile.skip>
-        <docker.repo>thingsboard</docker.repo>
+        <docker.repo>vzikratyi</docker.repo>
+        <oauth2-mapper.docker.name>oauth2-mapper-test</oauth2-mapper.docker.name>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>2.3.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

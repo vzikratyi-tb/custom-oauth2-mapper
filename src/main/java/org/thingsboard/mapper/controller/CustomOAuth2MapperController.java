@@ -17,11 +17,13 @@ package org.thingsboard.mapper.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.thingsboard.mapper.cache.CacheTestService;
 import org.thingsboard.server.common.data.id.CustomerId;
 import org.thingsboard.server.common.data.id.TenantId;
 import org.thingsboard.server.dao.oauth2.OAuth2User;
@@ -35,6 +37,20 @@ import java.util.UUID;
 public class CustomOAuth2MapperController {
 
     private static final ObjectMapper json = new ObjectMapper();
+
+    @Autowired
+    private CacheTestService cacheTestService;
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @ResponseBody
+    public String test() {
+        return cacheTestService.getTest();
+    }
+    @RequestMapping(value = "/test", method = RequestMethod.PUT)
+    @ResponseBody
+    public String testPut(@RequestBody String request) {
+        return cacheTestService.putTest(request);
+    }
 
     @RequestMapping(value = "/mapper", method = RequestMethod.POST)
     @ResponseBody
@@ -53,7 +69,7 @@ public class CustomOAuth2MapperController {
         String domain = email .substring(email .indexOf("@") + 1);
 
         // Any attribute from the external user info object can be used as tenant name
-        result.setTenantName("Tenant " + domain);
+        result.setTenantName(domain);
 
         // You can set directly Tenant ID instead of the Tenant Name
         // result.setTenantId(new TenantId(UUID.fromString("bc89e8f0-8ba9-11ea-97a9-0bc52285619a")));
@@ -67,8 +83,9 @@ public class CustomOAuth2MapperController {
 
 //        // If required, you can set Customer Name, and user is going to be created on the Customer level
 //        String customerName = externalUserInJson.get("CUSTOMER_NAME_ATTRIBUTE").asText();
-//        result.setCustomerName(email);
-
+        result.setCustomerName("TestCustomer");
+        result.setAlwaysFullScreen(false);
+        result.setDefaultDashboardName("TestDashboard");
 
 //        // You can set directly Customer ID instead of the Customer Name
 //        result.setCustomerId(new CustomerId(UUID.fromString("e78c0ab0-8ba9-11ea-97a9-0bc52285619a")));
