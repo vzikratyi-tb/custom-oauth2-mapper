@@ -23,7 +23,7 @@
 
     <groupId>org.thingsboard.mapper</groupId>
     <artifactId>oauth2-mapper</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Custom OAuth 2.0 Mapper</name>
@@ -65,11 +65,11 @@
             <version>${spring-boot.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.thingsboard.common</groupId>
-            <artifactId>dao-api</artifactId>
-            <version>${thingsboard.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.thingsboard.common</groupId>-->
+<!--            <artifactId>dao-api</artifactId>-->
+<!--            <version>${thingsboard.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-oauth2-core</artifactId>
